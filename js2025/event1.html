@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script>
+
+        function funonclick(){
+                let d = new Date();
+
+                let h = d.getHours();
+                let m = d.getMinutes();
+                
+                if(h >= 6 && h <= 11){
+                    alert("Good Morning " + h + ":" + m)
+                }else if(h > 11 && h<=15){
+                     alert("Good Noon " + h + ":" + m)
+                }else if(h > 15 && h<=18){
+                     alert("Good AfterNoon " + h + ":" + m)
+                }else{
+                     alert("Good Night " + h + ":" + m)
+                }
+        }
+
+    </script>
+</head>
+<body>
+    
+    <input type="button" value="Onclick" onclick="funonclick()" />
+    <br><br>
+    <input type="button" value="Ondblclick" ondblclick="funonclick()" />
+
+</body>
+</html>

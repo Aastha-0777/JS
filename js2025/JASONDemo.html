@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="disData"></div>
+
+    <script>
+
+        let Data = {
+            "name": "Vasudev",
+            "DSGN": "AI"
+        }
+
+        console.log(Data.name);
+        console.log(Data.DSGN);
+
+        console.log("------------------------------ARR");
+        
+        
+
+        let DataArr = [
+            {
+                "name": "Vasudev",
+                "DSGN": "AI"
+            },
+            {
+                "name": "Radha",
+                "DSGN": "Quntom"
+            },
+            {
+                "name": "Aastha",
+                "DSGN": "AI Architech"
+            }
+        ]
+
+       let names = "";
+       let DSGNs = "";
+
+        for(i = 0; i < DataArr.length;i++){
+            console.log(DataArr[i].name);
+            console.log(DataArr[i].DSGN);
+            
+            names = names + DataArr[i].name + "<br>";
+            DSGNs = DSGNs + DataArr[i].DSGN + "<br>";
+
+        }
+
+        document.getElementById("disData").innerHTML = names + "----------------" + "<br>" + DSGNs;
+
+    </script>
+
+</body>
+
+</html>

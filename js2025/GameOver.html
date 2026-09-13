@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Over</title>
+  <style>
+    body {
+      background: radial-gradient(circle at top, #0a0f1f, #050510 80%);
+      font-family: 'Orbitron', sans-serif;
+      color: #00ffff;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #00ffff;
+      text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff;
+    }
+
+    p {
+      color: #ffffff;
+      font-size: 1.2rem;
+      margin-top: 20px;
+      text-shadow: 0 0 10px #00ffff;
+    }
+
+    .btn {
+      margin-top: 40px;
+      background: #00ffff;
+      border: 2px solid #00ffff;
+      color: #092626;
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>☠ GAME OVER ☠</h1>
+  <p>System locked. You’ve run out of lives.</p>
+  <button class="btn" onclick="window.location.href='2GuessNumGame.html'">Try Again</button>
+</body>
+</html>

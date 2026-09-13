@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    Enter the Number : <input type="number" id="data" />
+    <br><br>
+    <input type="button" value="Check" onclick="fnGame()" />
+
+    <!-- <div id="Life"></div> -->
+
+    <script>
+
+        let winningNum = parseInt(Math.random() * 100);
+        // let lifeCount = 5;
+        // document.getElementById("Life").innerHTML = "<br>Life Remaining : " + lifeCount;
+        // function fnGame() {
+
+        let guessNum = parseInt(document.getElementById("data").value);
+
+        if (guessNum == undefined || guessNum == "") {
+        } else {
+
+            if (guessNum == winningNum) {
+                alert("Congretulations!! You Won the Game.");
+            } else {
+                if (guessNum > winningNum) {
+                    alert("Your Guess is Too High!!");
+                } else {
+                    alert("Your Guess is Too Small!!");
+                }
+                // if(lifeCount == 0 ){
+                //     alert("Game Over!!!");
+                // }
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>

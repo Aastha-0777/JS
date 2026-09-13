@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script>
+
+        function result() {
+            let fn = document.getElementById("first").value;
+            let ag = document.getElementById("age").value;
+            let gender = document.getElementsByName("gender");
+            let isError = false;
+
+            if (fn == "") {
+                isError = true;
+                document.getElementById("fnError").innerHTML = "Please Enter Your First Name!!";
+            } else {
+                document.getElementById("fnError").innerHTML = "";
+            }
+            if (ag == "") {
+                isError = true;
+                document.getElementById("agError").innerHTML = "Please Enter Yor Age!!";
+            } else {
+                document.getElementById("agError").innerHTML = "";
+            }
+            if (!gender[0].checked && !gender[1].checked) {
+                isError = true;
+                document.getElementById("genderError").innerHTML = "Please Select Your Gender!!";
+            } else {
+                document.getElementById("genderError").innerHTML = "";
+            }
+
+
+            if (isError == false) {
+                // if (gender[0].checked) {
+                //     gender = gender[0].value;
+                // } else if (gender[1].checked) {
+                //     gender = gender[1].value;
+               /* } else*/ if (gender[0].checked && ag >= 18) {
+                    document.getElementById("printValidity").innerHTML = " You are Eligible For Vote.";
+                } else if (gender[1].checked && ag >= 19) {
+                    document.getElementById("printValidity").innerHTML = " You are Eligible For Vote.";
+                } else {
+                    document.getElementById("printValidity").innerHTML = " You are NOT Eligible For Vote.";
+                }
+            }
+
+        }
+
+
+    </script>
+</head>
+
+<body>
+
+    First Name : <input type="text" id="first" />
+    <span id="fnError" style="color:red;"></span>
+    <br><br>
+    Age : <input type="text" id="age" />
+    <span id="agError" style="color:red;"></span>
+    <br><br>
+    Gender : Male <input type="radio" name="gender" value="Male" />
+    Female <input type="radio" name="gender" value="Female" />
+    <span id="genderError" style="color:red;"></span>
+    <br><br>
+    <input type="button" value="Submit" onclick="result()" />
+    <br><br>
+    <div id="printValidity"></div>
+
+</body>
+
+</html>

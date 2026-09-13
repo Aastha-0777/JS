@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script>
+        let a = [];
+        function addArry() {
+
+            let num = parseInt(document.getElementById("arry").value);
+            a.push(num);
+            console.log(a);
+        }
+
+        function sumArry() {
+
+            let sum = 0;
+            let i;
+
+            for (i = 0; i < a.length; i++) {
+
+                sum = sum + a[i];
+
+            }
+
+            console.log(sum);
+            document.getElementById("disSum").innerHTML = "<b>Sum : </b>" + sum;
+
+        }
+
+        function maxArry() {
+
+            let max = a[0];
+            let i;
+
+            for (i = 0; i < a.length; i++) {
+
+                if(a[i] > max){
+
+                    max = a[i];
+
+                }
+
+            }
+
+            console.log(max);
+            document.getElementById("disMax").innerHTML = "<b>Max : </b>" + max;
+
+        }
+
+        function printArry(){
+
+            console.log(a);
+            document.getElementById("disArray").innerHTML = "<b>Elements In The Array are : </b>" + a;
+
+        }
+
+
+    </script>
+</head>
+
+<body>
+
+    <b>Enter The Element to Add in The Array : </b> <input type="text" id="arry" />
+    <br><br>
+    <input type="button" value="Add" onclick="addArry()" />
+    <input type="button" value="Sum" onclick="sumArry()" />
+    <input type="button" value="Max" onclick="maxArry()" />
+    <input type="button" value="Print" onclick="printArry()" />
+    <br><br>
+
+    <div id="disSum"></div>
+    <div id="disMax"></div>
+    <div id="disArray"></div>
+
+</body>
+
+</html>

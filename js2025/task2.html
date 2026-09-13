@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script>
+
+        Maths = parseInt(prompt("Enter Your Maths Marks"));
+        Science = parseInt(prompt("Enter Your Science Marks"));
+        English = parseInt(prompt("Enter Your English Marks"));
+
+        Totalmarks = Maths + Science + English
+        Percentage = (Totalmarks / 300) * 100
+
+        if (Maths + English > 180) {
+            document.write("Pass");
+        } else if (Maths + Science > 190) {
+            document.write("Pass");
+        } else if (Percentage > 85) {
+            document.write("Pass");
+        } else {
+            document.write("Better Luck Next Time");
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

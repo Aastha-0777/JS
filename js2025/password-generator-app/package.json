@@ -1,0 +1,20 @@
+{
+  "name": "password-generator-app",
+  "version": "1.0.0",
+  "description": "A simple password generator application.",
+  "main": "src/js/main.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "password",
+    "generator",
+    "javascript"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^27.0.0"
+  }
+}

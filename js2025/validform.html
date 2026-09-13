@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script>
+        function display() {
+
+            let fn = document.getElementById("first").value;
+            let ln = document.getElementById("last").value;
+            let em = document.getElementById("email").value;
+            let dob = document.getElementById("date").value;
+            let gender = document.getElementsByName("Gender");
+            let mob = document.getElementById("mobile").value;
+            let hobby = document.getElementsByName("hobby");
+            let hobbysum = "";
+            let pass = document.getElementById("passWord").value;
+            let conf = document.getElementById("conform").value;
+
+            document.getElementById("firstprint").innerHTML = "<b>First Name : </b>" + fn;
+
+            document.getElementById("lastprint").innerHTML = "<b>Last Name : </b>" + ln;
+
+            document.getElementById("emailprint").innerHTML = "<b>Email : </b>" + em;
+
+            document.getElementById("dobprint").innerHTML = "<b>Date of Birth : </b>" + dob;
+
+            if (gender[0].checked) {
+                document.getElementById("genderprint").innerHTML = "<b>Gender : </b>" + gender[0].value;
+            }
+
+            if (gender[1].checked) {
+                document.getElementById("genderprint").innerHTML = "<b>Gender : </b>" + gender[1].value;
+            }
+            document.getElementById("mobileprint").innerHTML = "<b>Mobile Number : </b>" + mob;
+             if (gender[0].checked) {
+                    document.getElementById("genderprint").innerHTML = "<b>Gender : </b>" + gender[0].value;
+            }
+            
+            if (hobby[0].checked) {
+                   hobbysum = hobbysum + hobby[0].value;
+            }
+            if (hobby[1].checked) {
+                   hobbysum = hobbysum + "," + hobby[1].value;
+            }
+            if (hobby[2].checked) {
+                    hobbysum = hobbysum + "," + hobby[2].value;
+            }
+            if (hobby[3].checked) {
+                    hobbysum = hobbysum + "," + hobby[3].value;
+            }
+            document.getElementById("hobbyprint").innerHTML = "<b>Hobby/ies : </b>" + hobbysum;
+
+            document.getElementById("passWordprint").innerHTML = "<b>Password : </b>" + pass;
+            if(pass != conf){
+                alert("Enter the Right Password")
+            }else{
+                document.getElementById("conformprint").innerHTML = "<b>Conform Password : </b>" + conf;
+            }
+
+        }
+
+    </script>
+</head>
+
+<body>
+
+    First Name : <input type="text" id="first" />
+    <br><br>
+    Last Name : <input type="text" id="last" />
+    <br><br>
+    Email : <input type="email" id="email" />
+    <br><br>
+    Date of Birth : <input type="date" id="date" />
+    <br><br>
+    Gender :
+    Male <input type="radio" name="Gender" value="Male" />
+    Female <input type="radio" name="Gender" value="Female" />
+    <br><br>
+    Mobile Number : <input type="text" id="mobile" />
+    <br><br>
+    Hobby/ies : 
+    C/C++ <input type="checkbox" name="hobby" value="C/C++" />
+    Web Devlopment <input type="checkbox" name="hobby" value="Web Devlopment" />
+    Python <input type="checkbox" name="hobby" value="Python" />
+    Java <input type="checkbox" name="hobby" value="Java" />
+    <br><br>
+    Password : <input type="password" id="passWord" />
+    <br><br>
+    Conform Password : <input type="password" id="conform" />
+    <br><br>
+    <input type="button" value="Submit" onclick="display()" />
+    <br><br>
+
+    <div id="firstprint"></div>
+    <div id="lastprint"></div>
+    <div id="emailprint"></div>
+    <div id="dobprint"></div>
+    <div id="genderprint"></div>
+    <div id="mobileprint"></div>
+    <div id="hobbyprint"></div>
+    <div id="passWordprint"></div>
+    <div id="conformprint"></div>
+
+</body>
+
+</html>

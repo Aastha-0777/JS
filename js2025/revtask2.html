@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+
+
+    function fnShowTime() {
+
+        let d = new Date();
+        let h = d.getHours();
+        let m = d.getMinutes();
+
+        alert("Time => " + h + ":" + m);
+
+    }
+
+    function fnShowDate() {
+
+        let d = new Date();
+        let D = d.getDate();
+        let M = d.getMonth() + 1;
+        let Y = d.getFullYear();
+
+        alert("Date => " + D + "-" + M + "-" + Y);
+
+    }
+
+    function fnShowDay() {
+
+        let d = new Date();
+        let Day = d.getUTCDay();
+
+        if(Day == 0){
+            Day = "Sunday";
+        }else if (Day == 1) {
+            Day = "Monday";
+        } else if (Day == 2) {
+            Day = "Tuesday";
+        } else if (Day == 3) {
+            Day = "Wednesday";
+        } else if (Day == 4) {
+            Day == "Thursday";
+        } else if (Day == 5) {
+            Day = "Friday";
+        } else {
+            Day = "Saturday";
+        }
+
+        alert("Day => " + Day);
+
+    }
+
+</script>
+
+<body>
+
+    <input type="button" value="Time" onclick="fnShowTime()" />
+    <input type="button" value="Date" onclick="fnShowDate()" />
+    <input type="button" value="Day" onclick="fnShowDay()" />
+
+
+</body>
+
+</html>

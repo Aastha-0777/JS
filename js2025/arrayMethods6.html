@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        const marks = [35, 78, 92, 40, 25, 95, 25, 74, 85, 57];
+
+        let dis70 = marks.filter( temp => temp > 70);
+        let fail = marks.filter( temp => temp < 35);
+        let A = marks.filter( temp => temp > 90);
+
+        console.log("Distinction 70+ : " + dis70);
+        console.log("Fail in subject : " + fail);
+        console.log("A Grade : " + A);
+        
+
+    </script>
+
+</body>
+
+</html>

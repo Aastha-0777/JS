@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Rainbow</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script>
+        function bgViolet(){
+            document.bgColor = "violet"
+            setTimeout(bgIndigo,1000)
+        }
+        function bgIndigo(){
+            document.bgColor = "indigo"
+            setTimeout(bgBlue,1000)
+        }
+        function bgBlue(){
+            document.bgColor = "blue"
+            setTimeout(bgGreen,1000)
+        }
+        function bgGreen(){
+            document.bgColor = "green"
+            setTimeout(bgYellow,1000)
+        }
+        function bgYellow(){
+            document.bgColor = "yellow"
+            setTimeout(bgOrange,1000)
+        }
+        function bgOrange(){
+            document.bgColor = "orange"
+            setTimeout(bgRed,1000)
+        }
+        function bgRed(){
+            document.bgColor = "red"
+            setTimeout(bgViolet,1000)
+        }
+
+
+
+    </script>
+</head>
+<body onload="bgViolet()">
+    
+</body>
+</html>

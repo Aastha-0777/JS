@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script>
+        function formDetails() {
+            let first = document.getElementById("first").value;
+            let last = document.getElementById("last").value;
+            let email = document.getElementById("email").value;
+            let dob = document.getElementById("dob").value;
+            let Gender = document.getElementById("Gender").value;
+            let mob = document.getElementById("mob").value;
+            let hobby = document.getElementById("hobby").value;
+            let skills = document.getElementById("skills").value;
+            let city = document.getElementById("city").value;
+            let password = document.getElementById("password").value;
+            let conform = document.getElementById("conform").value;
+
+            let result = "First Name :" + first + "\n" +
+                         "Last Name : " + last + "\n" +
+                         "Email : " + email + "\n" +
+                         "Date of Birth : " + dob + "\n" +
+                         "Gender : " + Gender + "\n" +
+                         "Mobile No. : " + mob + "\n" +
+                         "Hobby : " + hobby + "\n" +
+                         "Skills : " + skills + "\n" +
+                         "City : " + city + "\n" +
+                         "Password : " + password ;
+                         
+                        document.getElementById("display").innerText = result;           
+        }
+
+
+    </script>
+</head>
+
+<body>
+
+    <form name="singup" >
+
+        <label>First Name : </label>
+        <br>
+        <input type="text" name="first" id="first" />
+        <br><br>
+        <label>Last Name : </label>
+        <br>
+        <input type="text" name="last" id="last" />
+        <br><br>
+        <label>Email : </label>
+        <br>
+        <input type="email" id="email" />
+        <br><br>
+        <label>Date of Birth : </label>
+        <br>
+        <input type="date" id="dob" />
+        <br><br>
+        <label>Gender : </label>
+        <label>Male</label>
+        <input type="radio" id="Gender" name="Gender" />
+        <label>Female</label>
+        <input type="radio" id="Gender" name="Gender" />
+        <br><br>
+        <label>Mobile No. : </label>
+        <br>
+        <input type="text" id="mob" />
+        <br><br>
+        <label>Hobby : </label>
+        <br>
+        <input type="text" id="hobby" />
+        <br><br>
+        <label>Skills : </label>
+        <label>Web Devlopment</label>
+        <input type="checkbox" id="skills" />
+        <label>C/C++</label>
+        <input type="checkbox" id="skills" />
+        <label>Python</label>
+        <input type="checkbox" id="skills" />
+        <label>Java</label>
+        <input type="checkbox" id="skills" />
+        <br><br>
+        <label>City : </label>
+        <select id="city">
+            <option>--Select Your City--</option>
+            <option>Ahemdabad</option>
+            <option>Bangalore</option>
+            <option>Pune</option>
+        </select>
+        <br><br>
+        <label>Password : </label>
+        <br>
+        <input type="password" id="password" />
+        <br><br>
+        <label>Conform Password : </label>
+        <br>
+        <input type="password" id="conform" />
+        <br><br>
+        <input type="button" value="submit" onclick="formDetails()" />
+        <br><br>
+
+        <div id="display"></div>
+
+    </form>
+
+</body>
+
+</html>

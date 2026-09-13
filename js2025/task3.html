@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script>
+
+
+        function oprat() {
+            num1 = parseInt(document.calc.num1.value);
+            num2 = parseInt(document.calc.num2.value);
+            opra = document.calc.opration.value;
+
+            if (opra == "op1") {
+                alert("Result: " + (num1 + num2));
+            } else if (opra == "op2") {
+                alert("Result: " + (num1 - num2));
+            } else if (opra == "op3") {
+                alert("Result: " + (num1 * num2));
+            } else if (opra == "op4") {
+                if (num2 === 0) {
+                    alert("Cannot divide by zero!");
+                } else {
+                    alert("Result: " + (num1 / num2));
+                }
+            } else {
+                alert("Please select a valid operation.");
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+
+    <form name="calc">
+
+        <label>Enter Number 1 :</label>
+        <br>
+        <input type="number" value="num1" name="num1" />
+        <br><br>
+        <label>Enter Number 2 :</label>
+        <br>
+        <input type="number" value="num2" name="num2" />
+        <br><br>
+        <label>Select a opreation :</label>
+        <select name="opration">
+            <option>---Select Opreation---</option>
+            <option value="op1">Addition(+)</option>
+            <option value="op2">Subtraction(-)</option>
+            <option value="op3">Multiplication(*)</option>
+            <option value="op4">Division(/)</option>
+        </select>
+        <br><br>
+        <button type="button" onclick="oprat()">Calculate</button>
+
+
+    </form>
+
+</body>
+
+</html>

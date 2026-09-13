@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script>
+        function chnageBlb() {
+            if (document.getElementById("blb").src.match("1gif.png")) {
+                document.getElementById("blb").src = "horror.jpg";
+            } else if (document.getElementById("blb").src.match("horror.jpg")) {
+                document.getElementById("blb").src = "h1.jpg";
+            } else {
+                document.getElementById("blb").src = "1gif.png";
+            }
+
+        }
+    </script>
+    <style>
+
+    </style>
+</head>
+
+<body bgcolor="black">
+
+    <center>
+        <img src="1gif.png" id="blb" width="250px" onclick="chnageBlb()">
+    </center>
+    
+</body>
+
+</html>

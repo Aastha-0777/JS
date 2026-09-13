@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script>
+        function Grade() {
+
+            Maths = parseInt(document.grade.maths.value);
+            Science = parseInt(document.grade.science.value);
+            English = parseInt(document.grade.english.value);
+
+
+            Totalmarks = Maths + Science + English;
+            Percentage = (Totalmarks / 300) * 100;
+
+            if ((Maths + English) > 180) {
+                alert("Result : PASS");
+            } else if ((Maths + Science) > 190) {
+                alert("Result : PASS");
+            } else if (Percentage > 85) {
+                alert("Result : PASS");
+            } else {
+                alert("Better Luck Next Time");
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+
+    <form name="grade">
+        <label>Enter Your Maths Marks :</label>
+        <br>
+        <input type="number" value="maths" name="maths" />
+        <br><br>
+        <label>Enter Your Science Marks :</label>
+        <br>
+        <input type="number" value="science" name="science" />
+        <br><br>
+        <label>Enter Your English Marks : </label>
+        <br>
+        <input type="number" value="english" name="english" />
+        <br><br>
+        <button type="button" onclick="Grade()">View Result</button>
+    </form>
+
+</body>
+
+</html>

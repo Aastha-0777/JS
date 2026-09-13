@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script>
+
+        function vote() {
+
+            Age = parseInt(document.Vote.Age.value);
+            Gender = document.Vote.Gender.value;
+            Name = document.Vote.Name.value;
+    
+            if (Gender === 'Male' && Age > 17) {
+                alert(Name + " you are Elegible for Vote")
+            } else if (Gender === "Female" && Age > 21) {
+                alert(Name + " you are Elegible for Vote");
+            } else {
+                alert(Name + " you are Not Elegible for Vote");
+            }
+
+        }
+
+    </script>
+</head>
+
+<body>
+
+    <form name="Vote">
+
+        <label>Enter Your Name : </label>
+        <input type="text" name="Name" />
+        <br><br>
+        <label>Enter Your Gender : </label>
+        <label>Male</label>
+        <input type="radio" name="Gender" />
+        <label>Female</label>
+        <input type="radio" name="Gender" />
+        <br><br>
+        <label>Enter Your Age : </label>
+        <input type="number" name="Age" />
+        <br><br>
+        <button type="button" name="Submit" onclick="vote()">Submit</button>
+
+    </form>
+
+</body>
+
+</html>

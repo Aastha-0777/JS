@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPS</title>
+</head>
+
+<body>
+
+    <h2>Rock Paper Scissors Game</h2>
+
+    <button value="Rock" onclick="fnCompair()" id="click">ROCK</button>
+    <button value="Papper" onclick="fnCompair()" id="click">PAPPER</button>
+    <button value="Scissors" onclick="fnCompair()" id="click">SCISSORS</button>
+
+    <div id="disMyChoice"></div>
+    <br>
+    <div id="disCompChoice"></div>
+    <br>
+    <div id="winMsg"></div>
+
+    <script>
+
+         let compChoice = ["Rock", "Papper", "Sciossors"];
+         let secretChoice = ""; 
+
+        function fnCompair(){
+            secretChoice = compChoice[Math.floor(Math.random() * compChoice.length)];
+            alert(secretChoice);
+    
+            const guess = document.getElementById("click").value;
+            alert(guess);
+                   
+            if(secretChoice == guess){
+                document.getElementById("winMsg").innerHTML = "You Won!"
+            }else{
+                document.getElementById("winMsg").innerHTML = "You Lose!"
+            }
+        }
+
+
+    </script>
+
+</body>
+
+</html>

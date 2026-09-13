@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dimaond Game</title>
+
+    <style>
+        td {
+            height: 100px;
+            width: 100px;
+            background-color: bisque;
+        }
+
+        img {
+            width: 64px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1 align="center">Dimaond Game</h1>
+    <br><br>
+
+    <h2><div align="center" id="printScore">Your Score : 0</div></h2>
+
+    <table align="center">
+
+        <tr>
+            <td onclick="fnPlayGame(1)" align="center"><img id="1"></td>
+            <td onclick="fnPlayGame(2)" align="center"><img id="2"></td>
+            <td onclick="fnPlayGame(3)" align="center"><img id="3"></td>
+        </tr>
+        <tr>
+            <td onclick="fnPlayGame(4)" align="center"><img id="4"></td>
+            <td onclick="fnPlayGame(5)" align="center"><img id="5"></td>
+            <td onclick="fnPlayGame(6)" align="center"><img id="6"></td>
+        </tr>
+        <tr>
+            <td onclick="fnPlayGame(7)" align="center"><img id="7"></td>
+            <td onclick="fnPlayGame(8)" align="center"><img id="8"></td>
+            <td onclick="fnPlayGame(9)" align="center"><img id="9"></td>
+        </tr>
+
+    </table>
+
+</body>
+
+<script>
+
+    let gameWinCount = 0;
+
+    let bomb1 = parseInt(Math.random() * 10) % 9 + 1;
+    let bomb2 = parseInt(Math.random() * 10) % 9 + 1;
+    let bomb3 = parseInt(Math.random() * 10) % 9 + 1;
+
+    while (bomb1 == bomb2 || bomb1 == bomb3 || bomb2 == bomb3) {
+        bomb1 = parseInt(Math.random() * 10) % 9 + 1;
+        bomb2 = parseInt(Math.random() * 10) % 9 + 1;
+        bomb3 = parseInt(Math.random() * 10) % 9 + 1;
+    }
+
+    console.log(bomb1);
+    console.log(bomb2);
+    console.log(bomb3);
+
+    function fnPlayGame(id) {
+        if (id == bomb1 || id == bomb2 || id == bomb3) {
+            document.getElementById(id).src = "bomb2.gif";
+
+            setTimeout(function () {
+                window.location.href = "DiamondGameOver.html";
+            }, 200)
+        } else {
+            document.getElementById(id).src = "diamond.png";
+            gameWinCount++; 
+            console.log(gameWinCount);
+            localStorage.setItem("Score", gameWinCount);
+            
+            document.getElementById("printScore").innerHTML = "Your Score : " + gameWinCount;
+
+            if (gameWinCount == 3) {
+                window.location.href = "DiamondGameWin.html";
+            }
+        }
+    }
+
+
+</script>
+
+
+</html>

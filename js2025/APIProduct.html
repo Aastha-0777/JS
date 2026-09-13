@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery API Call Basic</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    
+    <div id="disData"></div>
+
+    <script>
+
+        let prodNames = "";
+
+        $.get("https://api.restful-api.dev/objects", function fnprintAPI(data){
+
+            //console.log(data);
+
+            for(i = 0; i < data.length; i++){
+                console.log(data[i].name);
+                
+                prodNames = prodNames + data[i].name + "<br><hr>";
+
+            }
+            
+            document.getElementById("disData").innerHTML = prodNames;
+
+        })
+
+
+    </script>
+
+</body>
+</html>

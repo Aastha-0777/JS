@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div id="mainDiv">
+        <div id="disPasw"></div>
+        <br><br>
+        <div id="disRange"></div>
+        <br>
+        <input type="range" min="1" max="20" id="passwordLength">
+        <br><br>
+        Include Lower Case (a-z): <input type="checkbox" id="lw">   
+        <br><br>
+        Include Upper Case (A-Z): <input type="checkbox" id="up">
+        <br><br>
+        Include Numbers (0-9): <input type="checkbox" id="num">     
+        <br><br>
+        Include Symbols: <input type="checkbox" id="sym">
+        <br><br>
+        <button id="genPasw" onclick="fnGenPasW()">Generate Password</button>
+    </div>
+    <script src="js/main.js"></script>
+</body>
+</html>

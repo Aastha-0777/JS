@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script>
+        function viewEligiblity(){
+
+            let fn = document.getElementById("name").value;
+            let mm = document.getElementById("matmarks").value;
+            let em = document.getElementById("engmarks").value;
+            let qta = document.getElementsByName("qoata");
+
+            let isError = false;
+
+            if(fn == "")
+            {
+                isError = true;
+                document.getElementById("notfn").innerHTML = "<b>Please Enter Your Full Name!!</b>";
+            }else{
+                document.getElementById("notfn").innerHTML = "";
+            }
+            if(mm == ""){
+                isError = true;
+                document.getElementById("notmm").innerHTML = "<b>Please Enter Your Maths Marks!!</b>";
+            }else{
+                document.getElementById("notmm").innerHTML = "";
+            }
+            if(em == ""){
+                isError = true;
+                document.getElementById("notem").innerHTML = "<b>Please Enter Your English Marks!!</b>";
+            }else{
+                document.getElementById("notem").innerHTML = "";
+            }
+            if(!qta[0].checked && !qta[1].checked){
+                isError = true;
+                document.getElementById("notqta").innerHTML = "<b>Please Select Your Quoata!!</b>";
+            }else{
+                 document.getElementById("notqta").innerHTML = "";
+            }
+
+            if(isError == false){
+                if(mm > 90 && mm <= 100 && em > 92 && em <= 100 && qta[1].checked){
+                    document.getElementById("display").innerHTML =  fn + " is Eligible."
+                }else if(mm > 82 && mm <= 100 && em > 85 && em <= 100 && qta[0].checked){
+                     document.getElementById("display").innerHTML =  fn + " is Eligible."
+                }else{
+                     document.getElementById("display").innerHTML =  "Better Luck Next Time " + fn + ".";
+                }
+            }
+
+        }
+
+
+    </script>
+</head>
+<body>
+
+    Enter Your Full Name : <input type="text" id="name" />
+    <span id="notfn" style="color: red;"></span>
+    <br><br>
+    Enter Your Maths Marks : <input type="text" id="matmarks" />
+    <span id="notmm" style="color: red;"></span>    
+    <br><br>
+    Enter Your English Marks : <input type="text" id="engmarks" />
+    <span id="notem" style="color: red;"></span>
+    <br><br>
+    Quoata : General <input type="radio" name="qoata" value="General" /> Open <input type="radio" name="qoata" value="Open" />
+    <span id="notqta" style="color: red;"></span>
+    <br><br>
+    <input type="button" value="Submit" onclick="viewEligiblity()" />
+    <br><br>
+
+    <div id="display" style="color: darkcyan; font-size: larger; font-weight: bold;"></div>
+
+</body>
+</html>

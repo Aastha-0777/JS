@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Periodic Table of HTML Tags — Replica</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    /* --------------------
+       Variables (easy to convert to LESS)
+       -------------------- */
+    :root{
+      /* Colors sampled from your image (main palettes) */
+      --color-structure: #F9D655;   /* golden / structure */
+      --color-formatting: #80D8FF;  /* light blue (visual match) */
+      --color-forms: #A9E4C0;       /* light green (sampled) */
+      --color-media: #F8BBD0;       /* pink-ish (visual match) */
+      --color-meta: #D1C4E9;        /* violet */
+      --color-semantic: #D4E18F;    /* pale yellow (sampled) */
+      --color-programming: #FFAB91; /* peach */
+      --cell-border: #000000;
+      --bg: #ffffff;
+      --text: #000000;
+
+      /* sizing */
+      --table-max-width: 1100px;
+      --cell-min: 48px; /* minimum cell size on small screens */
+      --cell-ideal: 60px; /* ideal cell size on desktop */
+      --cell-gap: 0px;
+    }
+
+    /* --------------------
+       Basic page
+       -------------------- */
+    html,body{
+      height:100%;
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .wrap{
+      max-width: var(--table-max-width);
+      margin: 22px auto;
+      padding: 12px;
+      box-sizing: border-box;
+    }
+    h1{
+      margin: 6px 0 12px;
+      font-size: 20px;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* --------------------
+       Legend (above table)
+       -------------------- */
+    .legend{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:18px;
+      align-items:center;
+      margin-bottom:14px;
+      font-size:14px;
+    }
+    .legend .item{
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+    .legend .swatch{
+      width:18px;
+      height:18px;
+      border:1px solid var(--cell-border);
+      border-radius:3px;
+      display:inline-block;
+    }
+
+    /* --------------------
+       Table styling (responsive, plain table)
+       - We keep table layout but allow it to shrink
+       -------------------- */
+    .ptable {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0 auto;
+      table-layout: fixed; /* keep equal widths for cells in a row */
+      max-width: 100%;
+    }
+
+    .ptable td {
+      border: 1px solid var(--cell-border);
+      padding: 6px 4px;
+      text-align: center;
+      vertical-align: middle;
+      box-sizing: border-box;
+      /* cell height/width handled by min-width + aspect ratio below */
+      overflow: hidden;
+      word-break: break-word;
+    }
+
+    /* responsive sizing: cells use width: calc(100% / N) indirectly by fixed table layout.
+       we ensure a minimum width on small screens */
+    @media (min-width: 900px) {
+      .ptable td { height: var(--cell-ideal); }
+    }
+    @media (max-width: 899px) {
+      .ptable td { min-width: var(--cell-min); padding:6px 4px; }
+    }
+
+    /* blank spans / spacer cells */
+    .spacer {
+      background: transparent;
+      border: none;
+      padding: 0;
+    }
+
+    /* symbol + label inside cells */
+    .symbol { font-size: 14px; font-weight:700; line-height:1; display:block; }
+    .label  { font-size: 11px; color: #222; margin-top:6px; display:block; line-height:1; }
+
+    /* color group classes (exact hex values taken from sample + visual matches) */
+    .structure { background: var(--color-structure); }
+    .formatting { background: var(--color-formatting); }
+    .forms { background: var(--color-forms); }
+    .media { background: var(--color-media); }
+    .meta { background: var(--color-meta); }
+    .semantic { background: var(--color-semantic); }
+    .programming { background: var(--color-programming); }
+
+    /* Keep table responsive by allowing container to scale and text to wrap cleanly */
+    .bottom-space { height: 18px; }
+
+    /* small tweak: remove border for explicit colspan blank cells */
+    td[colspan] { border: none; padding: 0; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Periodic Table of HTML Tags</h1>
+
+    <!-- LEGEND: exact order above the table (as in your image) -->
+    <div class="legend" aria-hidden="false">
+      <div class="item"><span class="swatch structure"></span>Structure</div>
+      <div class="item"><span class="swatch formatting"></span>Formatting</div>
+      <div class="item"><span class="swatch forms"></span>Forms</div>
+      <div class="item"><span class="swatch media"></span>Media</div>
+      <div class="item"><span class="swatch meta"></span>Metadata</div>
+      <div class="item"><span class="swatch semantic"></span>Semantic</div>
+      <div class="item"><span class="swatch programming"></span>Programming</div>
+    </div>
+
+    <!-- MAIN TABLE: replicate the exact layout with colored cells -->
+    <!-- We keep the same number of columns/colspans as in your original file -->
+    <table class="ptable" cellpadding="0" cellspacing="0" role="presentation">
+      <tbody>
+
+        <tr>
+          <td class="meta"><span class="symbol">Dt</span><span class="label">&lt;!DOCTYPE&gt;</span></td>
+          <td class="spacer" colspan="16"></td>
+          <td class="meta"><span class="symbol">Mt</span><span class="label">&lt;meta&gt;</span></td>
+        </tr>
+
+        <tr>
+          <td class="structure"><span class="symbol">Hl</span><span class="label">&lt;html&gt;</span></td>
+          <td class="structure"><span class="symbol">Hr</span><span class="label">&lt;hr&gt;</span></td>
+          <td class="spacer" colspan="10"></td>
+          <td class="meta"><span class="symbol">Li</span><span class="label">&lt;link&gt;</span></td>
+          <td class="meta"><span class="symbol">Tl</span><span class="label">&lt;title&gt;</span></td>
+          <td class="structure"><span class="symbol">Tbd</span><span class="label">&lt;tbody&gt;</span></td>
+          <td class="formatting"><span class="symbol">Spn</span><span class="label">&lt;span&gt;</span></td>
+          <td class="semantic"><span class="symbol">Ad</span><span class="label">&lt;address&gt;</span></td>
+          <td class="meta"><span class="symbol">Be</span><span class="label">&lt;base&gt;</span></td>
+        </tr>
+
+        <tr>
+          <td class="meta"><span class="symbol">Ttl</span><span class="label">&lt;title&gt;</span></td>
+          <td class="meta"><span class="symbol">Cm</span><span class="label">&lt;!-- comment --&gt;</span></td>
+          <td class="spacer" colspan="10"></td>
+          <td class="semantic"><span class="symbol">Dl</span><span class="label">&lt;dl&gt;</span></td>
+          <td class="programming"><span class="symbol">Cn</span><span class="label">&lt;canvas&gt;</span></td>
+          <td class="structure"><span class="symbol">Tf</span><span class="label">&lt;tfoot&gt;</span></td>
+          <td class="semantic"><span class="symbol">Hdr</span><span class="label">&lt;header&gt;</span></td>
+          <td class="forms"><span class="symbol">Ds</span><span class="label">&lt;datalist&gt;</span></td>
+          <td class="programming"><span class="symbol">Spt</span><span class="label">&lt;script&gt;</span></td>
+        </tr>
+
+        <tr>
+          <td class="structure"><span class="symbol">By</span><span class="label">&lt;body&gt;</span></td>
+          <td class="semantic"><span class="symbol">Ar</span><span class="label">&lt;article&gt;</span></td>
+          <td class="formatting"><span class="symbol">Bo</span><span class="label">&lt;b&gt;</span></td>
+          <td class="formatting"><span class="symbol">De</span><span class="label">&lt;del&gt;</span></td>
+          <td class="formatting"><span class="symbol">Mk</span><span class="label">&lt;mark&gt;</span></td>
+          <td class="formatting"><span class="symbol">Rt</span><span class="label">&lt;rt&gt;</span></td>
+          <td class="formatting"><span class="symbol">Sub</span><span class="label">&lt;sub&gt;</span></td>
+          <td class="forms"><span class="symbol">Fm</span><span class="label">&lt;form&gt;</span></td>
+          <td class="forms"><span class="symbol">On</span><span class="label">&lt;option&gt;</span></td>
+          <td class="forms"><span class="symbol">Ot</span><span class="label">&lt;output&gt;</span></td>
+          <td class="semantic"><span class="symbol">Fgc</span><span class="label">&lt;figcaption&gt;</span></td>
+          <td class="media"><span class="symbol">Vd</span><span class="label">&lt;video&gt;</span></td>
+          <td class="semantic"><span class="symbol">Dt</span><span class="label">&lt;dt&gt;</span></td>
+          <td class="structure"><span class="symbol">Th</span><span class="label">&lt;th&gt;</span></td>
+          <td class="structure"><span class="symbol">Cl</span><span class="label">&lt;col&gt;</span></td>
+          <td class="semantic"><span class="symbol">Ft</span><span class="label">&lt;footer&gt;</span></td>
+          <td class="programming"><span class="symbol">Dg</span><span class="label">&lt;dialog&gt;</span></td>
+          <td class="semantic"><span class="symbol">Nst</span><span class="label">&lt;nav&gt;</span></td>
+        </tr>
+
+        <tr>
+          <td class="semantic"><span class="symbol">Hh</span><span class="label">&lt;h1&gt;–&lt;h6&gt;</span></td>
+          <td class="semantic"><span class="symbol">As</span><span class="label">&lt;aside&gt;</span></td>
+          <td class="programming"><span class="symbol">Bq</span><span class="label">&lt;blockquote&gt;</span></td>
+          <td class="structure"><span class="symbol">Dn</span><span class="label">&lt;main&gt;</span></td>
+          <td class="formatting"><span class="symbol">Mr</span><span class="label">&lt;marquee&gt;</span></td>
+          <td class="formatting"><span class="symbol">Ry</span><span class="label">&lt;ruby&gt;</span></td>
+          <td class="formatting"><span class="symbol">Sup</span><span class="label">&lt;sup&gt;</span></td>
+          <td class="forms"><span class="symbol">It</span><span class="label">&lt;input&gt;</span></td>
+          <td class="forms"><span class="symbol">Lbl</span><span class="label">&lt;label&gt;</span></td>
+          <td class="media"><span class="symbol">If</span><span class="label">&lt;iframe&gt;</span></td>
+          <td class="media"><span class="symbol">Fg</span><span class="label">&lt;figure&gt;</span></td>
+          <td class="structure"><span class="symbol">A</span><span class="label">&lt;a&gt;</span></td>
+          <td class="semantic"><span class="symbol">Dd</span><span class="label">&lt;dd&gt;</span></td>
+          <td class="structure"><span class="symbol">Tr</span><span class="label">&lt;tr&gt;</span></td>
+          <td class="structure"><span class="symbol">Cg</span><span class="label">&lt;colgroup&gt;</span></td>
+          <td class="structure"><span class="symbol">Mn</span><span class="label">&lt;menu&gt;</span></td>
+          <td class="media"><span class="symbol">Sr</span><span class="label">&lt;source&gt;</span></td>
+          <td class="media"><span class="symbol">Ed</span><span class="label">&lt;embed&gt;</span></td>
+        </tr>
+
+        <tr>
+          <td class="formatting"><span class="symbol">P</span><span class="label">&lt;p&gt;</span></td>
+          <td class="formatting"><span class="symbol">B</span><span class="label">&lt;b&gt;</span></td>
+          <td class="formatting"><span class="symbol">Ct</span><span class="label">&lt;cite&gt;</span></td>
+          <td class="formatting"><span class="symbol">Em</span><span class="label">&lt;em&gt;</span></td>
+          <td class="formatting"><span class="symbol">Pre</span><span class="label">&lt;pre&gt;</span></td>
+          <td class="formatting"><span class="symbol">S</span><span class="label">&lt;small&gt;</span></td>
+          <td class="formatting"><span class="symbol">Tm</span><span class="label">&lt;time&gt;</span></td>
+          <td class="structure"><span class="symbol">Ta</span><span class="label">&lt;table&gt;</span></td>
+          <td class="forms"><span class="symbol">Fs</span><span class="label">&lt;fieldset&gt;</span></td>
+          <td class="media"><span class="symbol">Ig</span><span class="label">&lt;img&gt;</span></td>
+          <td class="programming"><span class="symbol">Pr</span><span class="label">&lt;progress&gt;</span></td>
+          <td class="meta"><span class="symbol">Lk</span><span class="label">&lt;link&gt;</span></td>
+          <td class="programming"><span class="symbol">Mu</span><span class="label">&lt;menuitem&gt;</span></td>
+          <td class="structure"><span class="symbol">Td</span><span class="label">&lt;td&gt;</span></td>
+          <td class="forms"><span class="symbol">Sl</span><span class="label">&lt;select&gt;</span></td>
+          <td class="semantic"><span class="symbol">Sn</span><span class="label">&lt;section&gt;</span></td>
+          <td class="data"><span class="symbol">Da</span><span class="label">&lt;data&gt;</span></td>
+          <td class="media"><span class="symbol">Ot</span><span class="label">&lt;object&gt;</span></td>
+        </tr>
+
+        <tr>
+          <td class="formatting"><span class="symbol">Br</span><span class="label">&lt;br&gt;</span></td>
+          <td class="formatting"><span class="symbol">Bi</span><span class="label">&lt;bdi&gt;</span></td>
+          <td class="programming"><span class="symbol">Cd</span><span class="label">&lt;code&gt;</span></td>
+          <td class="formatting"><span class="symbol">I</span><span class="label">&lt;i&gt;</span></td>
+          <td class="meta"><span class="symbol">Ps</span><span class="label">&lt;param&gt;</span></td>
+          <td class="formatting"><span class="symbol">Sp</span><span class="label">&lt;span&gt;</span></td>
+          <td class="structure"><span class="symbol">U</span><span class="label">&lt;ul&gt;</span></td>
+          <td class="forms"><span class="symbol">Bn</span><span class="label">&lt;button&gt;</span></td>
+          <td class="forms"><span class="symbol">Ld</span><span class="label">&lt;legend&gt;</span></td>
+          <td class="media"><span class="symbol">Mp</span><span class="label">&lt;map&gt;</span></td>
+          <td class="media"><span class="symbol">Ao</span><span class="label">&lt;audio&gt;</span></td>
+          <td class="semantic"><span class="symbol">Nv</span><span class="label">&lt;nav&gt;</span></td>
+          <td class="structure"><span class="symbol">Mm</span><span class="label">&lt;main&gt;</span></td>
+          <td class="structure"><span class="symbol">Thd</span><span class="label">&lt;thead&gt;</span></td>
+          <td class="structure"><span class="symbol">Dv</span><span class="label">&lt;div&gt;</span></td>
+          <td class="media"><span class="symbol">Ae</span><span class="label">&lt;area&gt;</span></td>
+          <td class="meta"><span class="symbol">Hd</span><span class="label">&lt;head&gt;</span></td>
+          <td class="meta"><span class="symbol">Pm</span><span class="label">&lt;param&gt;</span></td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <div class="bottom-space"></div>
+
+    <!-- SMALL SECONDARY TABLE (bottom) -->
+    <table class="ptable" cellpadding="0" cellspacing="0" role="presentation" style="max-width:640px;">
+      <tbody>
+        <tr>
+          <td class="formatting"><span class="symbol">Is</span><span class="label">&lt;ins&gt;</span></td>
+          <td class="formatting"><span class="symbol">Q</span><span class="label">&lt;q&gt;</span></td>
+          <td class="formatting"><span class="symbol">Sm</span><span class="label">&lt;small&gt;</span></td>
+          <td class="formatting"><span class="symbol">Vr</span><span class="label">&lt;var&gt;</span></td>
+          <td class="meta"><span class="symbol">St</span><span class="label">&lt;style&gt;</span></td>
+          <td class="semantic"><span class="symbol">Ds</span><span class="label">&lt;details&gt;</span></td>
+          <td class="formatting"><span class="symbol">Aa</span><span class="label">&lt;abbr&gt;</span></td>
+          <td class="programming"><span class="symbol">Sc</span><span class="label">&lt;script&gt;</span></td>
+          <td class="structure"><span class="symbol">Ul</span><span class="label">&lt;ul&gt;</span></td>
+        </tr>
+        <tr>
+          <td class="formatting"><span class="symbol">Kdb</span><span class="label">&lt;kbd&gt;</span></td>
+          <td class="formatting"><span class="symbol">Rp</span><span class="label">&lt;rp&gt;</span></td>
+          <td class="formatting"><span class="symbol">Sg</span><span class="label">&lt;strong&gt;</span></td>
+          <td class="formatting"><span class="symbol">Wr</span><span class="label">&lt;wbr&gt;</span></td>
+          <td class="forms"><span class="symbol">Op</span><span class="label">&lt;optgroup&gt;</span></td>
+          <td class="programming"><span class="symbol">Kn</span><span class="label">&lt;keygen (deprecated)&gt;</span></td>
+          <td class="media"><span class="symbol">Cs</span><span class="label">&lt;canvas&gt;</span></td>
+          <td class="media"><span class="symbol">Tk</span><span class="label">&lt;track&gt;</span></td>
+          <td class="structure"><span class="symbol">Ol</span><span class="label">&lt;ol&gt;</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</body>
+</html>

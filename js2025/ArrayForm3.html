@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script>
+        let a = [];
+        function addArry() {
+
+            let num = parseInt(document.getElementById("arry").value);
+            a.push(num);
+            document.getElementById("arry").value = "";
+            console.log(a);
+        }
+
+        function printArry() {
+
+            console.log(a);
+            document.getElementById("disArray").innerHTML = "<b>Elements In The Array are : </b>" + a;
+
+        }
+
+        function sortArry() {
+
+            a.sort(logicSort);
+
+            document.getElementById("disSortArray").innerHTML = "<b>The Sorted Array is : </b>" + a;
+
+        }
+
+        function logicSort(x, y) {
+            if (x > y) {
+                return 1;
+            } else if (x < y) {
+                return -1;
+            } else {
+                return 0;
+            }
+        }
+
+        function RevArry() {
+
+            a.reverse();
+
+            document.getElementById("disRevArray").innerHTML = "<b>The Reversed Array is : </b>" + a;
+
+        }
+
+    </script>
+</head>
+
+<body>
+
+    <b>Enter The Element to Add in The Array : </b> <input type="text" id="arry" />
+    <br><br>
+    <input type="button" value="Add" onclick="addArry()" />
+    <input type="button" value="Print" onclick="printArry()" />
+    <input type="button" value="Sort" onclick="sortArry()" />
+    <input type="button" value="Reverse" onclick="RevArry()" />
+    <br><br>
+
+    <div id="disArray"></div>
+    <div id="disRevArray"></div>
+    <div id="disSortArray"></div>
+
+</body>
+
+</html>

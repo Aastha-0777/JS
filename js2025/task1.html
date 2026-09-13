@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script>
+
+        Name = prompt("Enter Your Name ");
+        Gender = prompt("Enter Your Gendre");
+        Age = parseInt(prompt("Enter Your Age "));
+
+        if (Gender === 'Male' && Age > 17) {
+            document.write(Name, " is Elegible for Vote");
+        } else if(Gender === "Female" && Age > 21){
+            document.write(Name, " is Elegible for Vote");
+        } else{
+            document.write(Name, " is Not Elegible for Vote");
+        }
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>!!! DO NOT MOVE !!!</title>
+    <style>
+        /*
+        -- CSS: Stark, High-Tension Theme --
+        */
+        body {
+            /* Black background for stark contrast */
+            background-color: black;
+            display: flex;
+            flex-direction: column; 
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Consolas', monospace; 
+            overflow: hidden; 
+            user-select: none;
+            cursor: default; /* Keep it clean for contrast */
+            color: #AAAAAA; /* Grayed-out for a cold, clinical feel */
+        }
+
+        /* The Main Image */
+        #blb {
+            width: 50px; /* Starts very small to maximize shock contrast */
+            height: auto;
+            border: 1px solid #333333; /* Minimal border */
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.1); 
+            transition: all 0.5s ease-out; /* Slow transition for visual tracking (tension building) */
+        }
+        
+        /* Message Display */
+        #message {
+            font-size: 1.2em;
+            margin: 30px 0;
+            text-align: center;
+            letter-spacing: 3px;
+        }
+
+        /* The Shock Class: Applied only during the shock phase */
+        .shock-image {
+            width: 150vw !important; /* Overwhelm the viewport */
+            height: 100vh !important;
+            object-fit: cover;
+            border: 5px solid red !important;
+            box-shadow: 0 0 50px red !important;
+            transition: none !important; /* INSTANT SHOCK */
+            filter: brightness(150%) contrast(150%);
+        }
+    </style>
+</head>
+
+<body> 
+    
+    <div id="message">STATUS: AWAITING INPUT (3 CLICKS REMAINING)</div>
+    
+    <audio id="hiss_sound" src="silent_hiss.mp3" loop preload="auto"></audio> 
+    <audio id="shock_sound" src="scream.mp3" preload="auto"></audio> 
+
+    <img src="1gif.png" id="blb" alt="STATUS: IDLE" onclick="changeBlb()">
+
+    <script>
+        // --- Core Threatening Logic ---
+
+        const BLB = document.getElementById("blb");
+        const MESSAGE = document.getElementById("message");
+        const HISS = document.getElementById("hiss_sound");
+        const SHOCK = document.getElementById("shock_sound");
+        
+        let clicksRemaining = 3;
+        let isShockActive = false;
+        
+        // Start a very quiet, unsettling hiss/static immediately
+        HISS.volume = 0.3;
+        HISS.play().catch(() => {});
+
+        // Request fullscreen on first interaction
+        BLB.addEventListener('click', function requestFullScreen() {
+             document.documentElement.requestFullscreen().catch(() => {});
+             BLB.removeEventListener('click', requestFullScreen);
+        });
+
+        function changeBlb() {
+            if (isShockActive) return; // Ignore clicks if the final state is active
+            
+            clicksRemaining--;
+
+            if (clicksRemaining > 0) {
+                // State 1 & 2: Building Tension (2 and 1 clicks remaining)
+                
+                // Show tracking message
+                MESSAGE.textContent = `STATUS: CALCULATING... (${clicksRemaining} CLICKS REMAINING)`;
+                
+                // Gradually grow the image and apply filters
+                BLB.src = "1gif.png";
+                // Growth calculation: 50px + (3-2)*50px = 100px; 50px + (3-1)*50px = 150px
+                BLB.style.width = `${50 + (3 - clicksRemaining) * 50}px`; 
+                // Color shift calculation: 2*90=180deg; 1*90=90deg
+                BLB.style.filter = `hue-rotate(${clicksRemaining * 90}deg)`; 
+
+            } else if (clicksRemaining === 0) {
+                // State 3: The Delay and Shock
+                isShockActive = true;
+                
+                // 1. Enter the tension phase
+                MESSAGE.textContent = "STATUS: PROCESSING FINAL COMMAND...";
+                BLB.style.border = '5px solid yellow';
+                document.body.style.backgroundColor = '#110000'; // Dark red undertone
+                HISS.volume = 0.5;
+
+                // 2. The critical 1000ms (1-second) delay
+                setTimeout(() => {
+                    // **THE SHOCK EXECUTION**
+                    MESSAGE.textContent = "!!! EXECUTION COMPLETE !!!";
+                    MESSAGE.style.color = 'red';
+                    
+                    // Visual Overload
+                    BLB.src = "horror.jpg";
+                    BLB.classList.add('shock-image'); 
+                    document.body.style.backgroundColor = 'black'; 
+                    
+                    // Auditory Shock
+                    HISS.pause();
+                    SHOCK.currentTime = 0;
+                    SHOCK.play().catch(() => {});
+                    
+                    // 3. Final blackout sequence (2.5 seconds later)
+                    setTimeout(() => {
+                        document.body.innerHTML = '<h1 style="color: red; font-size: 5em;">DISCONNECTED.</h1>';
+                        document.exitFullscreen().catch(() => {});
+                    }, 2500);
+
+                }, 1000); // <-- This 1000ms delay creates the final tension
+            }
+        }
+    </script>
+
+</body>
+
+</html>

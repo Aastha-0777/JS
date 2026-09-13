@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Home</title>
+</head>
+<body>
+
+    <h2>Welcome, <span id="disName"></span>!</h2>
+
+    <input type="button" value="LogOut" onclick="fnLogout()">
+    
+    <script>
+
+        let dispName = localStorage.getItem("Name");
+
+        document.getElementById("disName").innerHTML = dispName;
+
+        function fnLogout (){
+
+            localStorage.clear();
+
+            location.href = "QuizLogin.html";
+
+        }
+
+    </script>
+
+</body>
+</html>

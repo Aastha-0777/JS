@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        let no1 = prompt("Enter No1 : ");
+        let no2 = prompt("Enter No2 : ");
+
+        for (let i = no1; i <= no2; i++) {
+            let ld = 0;
+            ld = i % 10;
+            if (ld == 0 || ld == 3 || ld == 7) {
+                console.log(i);
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

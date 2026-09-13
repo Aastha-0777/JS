@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess The Number Name</title>
+</head>
+<style>
+    body {
+        background-color: #0a0f1f;
+        font-family: 'Orbitron', sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        color: #00ffff;
+    }
+
+    div {
+        background-color: rgba(0, 255, 255, 0.05);
+        border: 2px solid #00ffff;
+        box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+        border-radius: 15px;
+        padding: 30px;
+        width: 300px;
+        text-align: center;
+    }
+
+
+    input[type="number"] {
+        border: 2px solid #00ffff;
+        background-color: transparent;
+        color: #00ffff;
+        font-size: 15px;
+        padding: 10px;
+        border-radius: 8px;
+        outline: none;
+        text-align: center;
+        width: 120px;
+    }
+
+    button {
+        margin-top: 20px;
+        border: 2px solid #00ffff;
+        background-color: #00ffff;
+        color: #0a0f1f;
+        font-size: 15px;
+        padding: 10px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    h1 {
+        color: #00ffff;
+        text-shadow: 0 0 10px #02eaea, 0 0 20px #01e5e5;
+        font-family: 'Orbitron', sans-serif;
+        letter-spacing: 2px;
+        text-align: center;
+    }
+
+</style>
+
+<body>
+
+    <h1>CodeBreaker: Guess the Hidden Number</h1>
+    <div>
+
+        Enter the Number : <input type="number" id="data" placeholder="Enter number" />
+        <br><br>
+        <button onclick="fnGame()">Check</button>
+
+    </div>
+
+    <script>
+
+        let winingNum = parseInt(Math.random() * 100);
+        let LifeCount = 5;
+
+        function fnGame() {
+
+            let guessNum = document.getElementById("data").value;
+
+            if (guessNum == undefined || guessNum == "") {
+                alert("Please Enter a Number.");
+            } else {
+                guessNum = parseInt(guessNum);
+                if (guessNum == winingNum) {
+                    location.href = "GameWon.html";
+                } else {
+                    LifeCount--;
+                    if (guessNum > winingNum) {
+                        alert("Your Guess is Higher than the Wining Number.");
+                    } else {
+                        alert("Your Guess is Lower than the Wining Number.");
+                    }
+                    if (LifeCount == 0) {
+                        location.href = "GameOver.html";
+                    }
+                }
+
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
