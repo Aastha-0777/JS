@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src=".\formDemo.js"></script>
+</head>
+
+<body>
+
+    <!-- <form action="http://www.google.com"> -->
+    <form onsubmit="submitHandaler(event)">
+
+        <div>
+
+            <label >Name : </label>
+            <input type="text" id="name">
+
+        </div>
+
+        <div>
+
+            <label >Email : </label>
+            <input type="email" id="email">
+
+        </div>
+
+        <div>
+
+            <label >Age : </label>
+            <input type="number" id="age" placeholder="Enter your Age">
+
+        </div>
+        
+        <div>
+
+            <label>Country : </label>
+            <select id="country">
+
+                <option value="india">INDIA</option>
+                <option value="china">CINA</option>
+                <option value="france">FRANCE</option>
+
+            </select>
+
+        </div>
+
+        <div>
+
+            <label >Gender : </label>
+            <br>
+            Male : <input type="radio" name="gender" value="male">
+            Female : <input type="radio" name="gender" value="female">
+
+        </div>
+
+        <div>
+
+            <label >Skills : </label>
+            <br>
+            Web Dev. : <input type="checkbox" name="skills" value="web dev."> 
+            Robotics : <input type="checkbox" name="skills" value="robotics"> 
+            Java Dev. : <input type="checkbox" name="skills" value="java dev."> 
+
+        </div>
+
+        <input type="submit">
+
+    </form>
+
+</body>
+
+</html>
