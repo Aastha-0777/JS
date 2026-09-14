@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+
+    #sticky-note {
+        /* Dimensions & Spacing */
+        width: 250px;
+        min-height: 250px;
+        padding: 25px;
+        box-sizing: border-box;
+        margin: 20px;
+
+        /* Sticky Note Yellow Color */
+        background-color: #fef5c1;
+
+        /* Font & Typography Styling */
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #333333;
+
+        /* Realistic Soft Paper Shadow */
+        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.15);
+
+    }
+
+    /* Header style inside the note */
+    #sticky-note h3 {
+        margin-top: 0;
+        margin-bottom: 12px;
+        font-size: 20px;
+        font-weight: 600;
+        border-bottom: 1px dashed rgba(0, 0, 0, 0.15);
+        padding-bottom: 6px;
+    }
+
+    /* Paragraph text style inside the note */
+    #sticky-note p {
+        margin: 0;
+    }
+
+    
+</style>
+
+<body>
+
+    
+    <form onsubmit="writeOnStickNote(event)">
+
+        <div>
+
+            <label for="">Enter the Text to write on Sticky Note : </label>
+            <input type="text" id="text">
+
+        </div>
+
+        <br>
+
+        <input type="submit">
+
+    </form>
+    
+    <div id="sticky-note">
+        
+    </div>
+
+    <script src="./stickyNotes.js"></script>
+
+</body>
+
+</html>
