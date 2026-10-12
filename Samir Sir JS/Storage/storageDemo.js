@@ -34,3 +34,26 @@ const clearStorage = () => {
     // sessionStorage.clear()
 
 }
+const storeCookies = () => {
+
+    document.cookie = "user=aastha;"
+    document.cookie="theme=dark;Max-Age=86400;path=/;SameSite=Lax;Secure"
+    document.cookie="theme1=dark1;Max-Age=86400;path=/;SameSite=Secure;Secure"
+
+}
+
+const getCookie = () => {
+
+    console.log(document.cookie);
+
+    const cookieArr = document.cookie.split(" ")    
+    console.log(cookieArr);
+  
+    cookieArr.forEach((c) => {
+
+        var kvArr = c.split("=")
+        console.log(kvArr[0], " : ", kvArr[1]);
+    
+    })
+
+}
