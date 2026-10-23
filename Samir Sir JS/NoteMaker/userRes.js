@@ -6,8 +6,9 @@ console.log(users);
 
 const submitHendaler = (event) => {
 
-    event.priventDefault();
-
+    event.preventDefault();
+    console.log("User Resistered...");
+    
     const name = document.getElementById("name").value
     const email = document.getElementById("email").value
     const password = document.getElementById("password").value
