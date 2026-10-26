@@ -16,6 +16,17 @@ if (loggedInUser) {
 
 // to create a form to get some detail from user for creating notes
 
+var noteCreated = JSON.parse(localStorage.getItem("notesObj"))
+
+if (noteCreated == null) {
+
+    noteCreated = []
+
+}
+
+console.log(noteCreated);
+
+
 const createNoteBtn = document.getElementById("btn")
 const root = document.getElementById("root")
 
@@ -62,18 +73,19 @@ createNoteBtn.addEventListener("click", () => {
 
         var notesObj = {
 
-            title : title,
-            priority : priority,
-            id : loggedInUserObj.id
+            title: title,
+            priority: priority,
+            id: loggedInUserObj.id
 
         }
-        
+
+        noteCreated.push(notesObj)
         //stringfy object ans store in localstoage
 
-        localStorage.setItem("myNotes", JSON.stringify(notesObj))
+        localStorage.setItem("myNotes", JSON.stringify(noteCreated))
 
-        console.log(notesObj);
-        
+        console.log(noteCreated);
+
     })
 
 })
