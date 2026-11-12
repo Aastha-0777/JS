@@ -1,0 +1,555 @@
+================================================================================
+
+PROJECT TITLE: THE VANILLA JS RECRUITER CODING EXAM & DIAGNOSTIC EVALUATOR
+
+Target Skill Level: Beginner Foundations (Variables, Types, Loops, Functions, IIFE)
+
+Real-World Inspiration: LeetCode / HackerRank Assessment Engine & CodeSignal Exam
+
+================================================================================
+
+
+
+1. PROJECT OVERVIEW & REAL-WORLD SCENARIO
+
+--------------------------------------------------------------------------------
+
+When software engineers apply for frontend or full-stack roles at tech companies,
+
+they are sent an automated diagnostic coding assessment via platforms like
+
+HackerRank, Codility, or CodeSignal.
+
+
+
+These assessment platforms run an isolated, sandboxed evaluation engine that
+
+onboards the candidate, presents sequential logic questions testing real-world
+
+JavaScript edge cases, validates submissions, tracks answer streaks, and generates
+
+an audit report.
+
+
+
+If the assessment engine is poorly architected, three fatal real-world bugs occur:
+
+  1. Global Namespace Pollution & Cheating: If the engine stores `examState` or
+
+     `score` as global variables, a candidate can simply open the browser DevTools
+
+     Console (F12), type `examState.score = 5`, and fake a 100% passing score.
+
+  2. Type Coercion False Positives: If the engine validates answers using loose
+
+     equality (`==`) or naive `Number()` conversions, an empty string `""` can
+
+     evaluate to `0` and trigger a false pass on arithmetic questions.
+
+  3. Unhandled Null Crashes on Cancellation: When a user clicks [Cancel] on a
+
+     browser `prompt()`, JavaScript returns `null`. Calling `.trim()` or
+
+     `.toLowerCase()` directly on `null` crashes the entire runtime with a
+
+     `TypeError: Cannot read properties of null`.
+
+
+
+Your objective is to engineer a pure Vanilla JavaScript diagnostic exam engine
+
+that runs entirely in the browser environment, interacts with the candidate via
+
+browser dialogues (`prompt`, `alert`, `confirm`), isolates all execution state
+
+inside an Immediately Invoked Function Expression (IIFE), validates answers using
+
+first-class callback functions, and performs a recursive countdown audit before
+
+publishing a structured report to the DevTools console.
+
+
+
+
+
+2. WHAT YOU CAN PUT ON YOUR RESUME AFTER BUILDING THIS
+
+--------------------------------------------------------------------------------
+
+Project Name: Sandboxed JavaScript Diagnostic Assessment & Evaluation Engine (Vanilla JS)
+
+* Engineered an interactive candidate evaluation engine in pure Vanilla JavaScript
+
+  (ES6+) utilizing zero external frameworks, dependencies, or build tools.
+
+* Architected complete global namespace isolation using an Immediately Invoked
+
+  Function Expression (IIFE) under strict mode and encapsulated mutable candidate
+
+  test state within an in-memory state container.
+
+* Implemented a higher-order evaluation pipeline using first-class callback
+
+  functions and arrow validators to test critical JavaScript language traps
+
+  (implicit type coercion, truthy/falsy evaluation, and strict equality).
+
+* Designed a fault-tolerant browser dialogue runtime (`prompt`, `alert`, `confirm`)
+
+  featuring safe loop-break cancellation, division-by-zero protection, and a
+
+  recursive countdown audit outputting formatted tables via `console.table()`.
+
+
+
+
+
+3. CORE TECHNICAL REQUIREMENTS (LIMITED TO YOUR CURRENT JS TOOLKIT)
+
+--------------------------------------------------------------------------------
+
+You must build this engine using ONLY core JavaScript foundations:
+
+  - Video 1: "JavaScript Course for Beginners – Your First Step to Web Development" (Mosh)
+
+  - Video 2: "JavaScript Full Course: Complete Foundations | JS God Mode | Part-1" (Sarthak Sharma)
+
+  - Video 3: "JavaScript Functions: Complete Deep Dive | JS God Mode | Part-2" (Sarthak Sharma)
+
+
+
+A. Scope & State Encapsulation:
+
+   - IIFE (Immediately Invoked Function Expression): Wrap the entire application
+
+     in `(function recruiterAssessmentEngine() { "use strict"; ... })();` so zero
+
+     variables or functions leak into the global `window` object.
+
+   - `const` & `let` Discipline: Never use `var`. Use `const` for immutable
+
+     references, objects, arrays, and functions, and `let` strictly for loop
+
+     counters and re-assignable primitives.
+
+   - In-Memory State Object Literal: Maintain a single state container:
+
+     `examState` holding `candidateName`, `score`, `totalAnswered`, `currentStreak`,
+
+     and `history` (an array of log objects).
+
+
+
+B. Data Types & Explicit Type Conversions:
+
+   - Primitives: Strings, Numbers, Booleans, `null`, and `undefined`.
+
+   - Explicit Conversion: Use `Number()`, `String()`, and `Boolean()` deliberately
+
+     to sanitize candidate text responses before checking numerical edge cases.
+
+   - String Sanitization: Use `.trim()` and `.toLowerCase()` safely after verifying
+
+     that input is not `null`.
+
+
+
+C. Operators & Edge-Case Validation:
+
+   - Strict Equality (`===` and `!==`): Prevent loose equality (`==`) coercion bugs.
+
+   - Arithmetic & Modulo (`+`, `-`, `*`, `/`, `%`): Compute percentages and test
+
+     remainder arithmetic.
+
+   - Logical Operators (`&&`, `||`, `!`) & Ternary (`? :`): Build concise composite
+
+     validation expressions and status labels.
+
+
+
+D. Functional Programming & First-Class Citizen Functions:
+
+   - Higher-Order Evaluator Function: Build `evaluateAnswer(userAnswer, validatorCallback)`
+
+     that accepts a validation function as a parameter.
+
+   - Arrow Function Validators (`=>`): Attach concise single-line arrow functions
+
+     to each question object in your question bank.
+
+   - Pure Function: Build `calculatePercentage(correct, total)` with zero side
+
+     effects and no direct access to `examState`.
+
+   - Recursion: Build `auditCountdown(seconds)` that calls itself with `seconds - 1`
+
+     until hitting the base case `seconds <= 0`.
+
+
+
+E. Control Flow & Browser Dialogues:
+
+   - Dialogue Trio: Interact with the user via `prompt()`, `alert()`, and `confirm()`.
+
+   - Loop & Early Exit: Use a `for` loop to iterate through the question bank and
+
+     cleanly `break` if the user clicks `[Cancel]` mid-exam.
+
+
+
+
+
+4. STEP-BY-STEP IMPLEMENTATION BLUEPRINT
+
+--------------------------------------------------------------------------------
+
+
+
+STEP 1: Set Up the Project Files (`index.html` & `app.js`)
+
+----------------------------------------------------------
+
+1. Create a folder named `assessment-engine/`.
+
+2. Inside it, create `index.html` with a basic HTML5 structure, an `<h1>` heading
+
+   ("Recruiter JS Diagnostic Assessment Engine"), instructions to open the
+
+   DevTools Console (`F12`), and a `<script src="app.js"></script>` tag before `</body>`.
+
+3. Create `app.js` and wrap the entire file inside a named IIFE with `"use strict";`
+   at the top.
+
+
+
+STEP 2: Initialize the State Object & Constants
+
+-----------------------------------------------
+
+Inside your IIFE, define:
+
+1. `const PASSING_PERCENTAGE = 70;`
+
+2. `const examState` with properties:
+
+   - `candidateName`: `"Anonymous Candidate"`
+
+   - `score`: `0`
+
+   - `totalAnswered`: `0`
+
+   - `currentStreak`: `0`
+
+   - `history`: `[]`
+
+
+
+STEP 3: Build the Pure Helper, Higher-Order Evaluator & Recursive Auditor
+
+-------------------------------------------------------------------------
+
+1. Pure Function (`calculatePercentage`):
+
+   - Write an arrow function taking `(correct, total)`.
+
+   - Guard against division by zero (`if (!total || total === 0) return 0;`).
+
+   - Return `(correct / total) * 100`.
+
+2. Higher-Order Function (`evaluateAnswer`):
+
+   - Write `function evaluateAnswer(userAnswer, validatorCallback)`.
+
+   - If `userAnswer === null` or `userAnswer.trim() === ""`, return `false`.
+
+   - Otherwise, normalize `userAnswer` with `.trim().toLowerCase()` and pass it
+
+     into `validatorCallback(...)`, returning the boolean result.
+
+3. Recursive Function (`auditCountdown`):
+
+   - Write `function auditCountdown(seconds)`.
+
+   - Base Case: If `seconds <= 0`, log `"Audit complete! Integrity verified."` and
+
+     `return`.
+
+   - Recursive Step: Log `"Auditing submission packages in " + seconds + "..."`
+
+     and call `auditCountdown(seconds - 1)`.  
+
+
+
+STEP 4: Construct the Question Bank Array (`questionBank`)
+
+----------------------------------------------------------
+
+Create a `const questionBank = [ ... ]` containing 5 question objects. Each object
+
+must have `id`, `topic`, `question`, and a `validate` arrow function callback:
+
+
+
+1. Question 1 (Implicit Type Coercion):
+
+   - Prompt text: `"Q1: What is the result of 5 + '5' in JavaScript?\n1) 10\n2) '55'\n3) NaN"`
+
+   - Validator: Returns `true` if normalized input is `"2"`, `"55"`, or `"'55'"`.
+
+2. Question 2 (Strict vs. Loose Equality):
+
+   - Prompt text: `"Q2: Does (null === undefined) evaluate to true or false?"`
+
+   - Validator: Returns `true` if normalized input is `"false"`.
+
+3. Question 3 (Modulo Arithmetic):
+
+   - Prompt text: `"Q3: What is the output of 17 % 5?"`
+
+   - Validator: Explicitly converts the non-empty input using `Number(ans)` and
+
+     checks if `Number(ans) === 2`.
+
+4. Question 4 (Truthy & Falsy Trap):
+
+   - Prompt text: `"Q4: Is an empty string \"\" truthy or falsy in an if-condition? (Type: truthy/falsy)"`
+
+   - Validator: Returns `true` if normalized input is `"falsy"`.
+
+5. Question 5 (Default Function Return Values):
+
+   - Prompt text: `"Q5: What does a function return if no return statement is specified?\n1) null\n2) 0\n3) undefined"`
+
+   - Validator: Returns `true` if normalized input is `"3"` or `"undefined"`.
+
+
+
+STEP 5: Implement Candidate Onboarding & The Testing Loop (`runAssessment`)
+
+---------------------------------------------------------------------------
+
+Create `function runAssessment()` and execute the runtime steps:
+
+
+
+  Phase A: Candidate Registration
+
+  1. Prompt the candidate for their name:
+
+     `const nameInput = prompt("HackerRank JS Assessment: Enter Candidate Name:");`
+
+  2. If `nameInput === null` (Candidate clicked `[Cancel]`):
+
+     - Show `alert("Assessment aborted. No score recorded.");`
+
+     - `return;` immediately so the exam does not start.
+
+  3. If `nameInput.trim() !== ""`, update `examState.candidateName = nameInput.trim()`.
+
+     Otherwise, ensure it defaults to `"Anonymous Candidate"`.
+
+  4. Greet the user with `alert(...)`.
+
+
+
+  Phase B: The 5-Question Loop
+
+  5. Write a `for` loop from `let i = 0` to `questionBank.length - 1`.
+
+  6. Display `const rawAnswer = prompt(q.question);`.
+
+  7. Check if `rawAnswer === null`:
+
+     - Show `alert("Candidate terminated the exam early.");`
+
+     - Execute `break;` to exit the loop safely without crashing.
+
+  8. Call `const isPassed = evaluateAnswer(rawAnswer, q.validate);`.
+
+  9. Update `examState`:
+
+     - If `isPassed` is `true`: increment `examState.score`, increment
+      `examState.currentStreak`,
+      and `alert("Correct! Current Streak: " + examState.currentStreak)`.
+
+     - If `isPassed` is `false`: reset `examState.currentStreak = 0` and
+
+       `alert("Incorrect! Streak reset.")`.
+
+     - Increment `examState.totalAnswered`.
+
+     - Push a record object `{ questionId: q.id, topic: q.topic, userAnswer: rawAnswer,
+      result: isPassed ? "PASSED" : "FAILED" }`
+
+       into `examState.history`.
+
+
+
+STEP 6: Trigger the Recursive Audit & Final Scorecard
+
+-----------------------------------------------------
+
+Still inside `runAssessment()`, after the `for` loop ends:
+
+1. Log `"=== INITIATING RECURSIVE SUBMISSION AUDIT ==="` to the console and invoke
+
+   `auditCountdown(3)`.
+
+2. Compute the final percentage using your pure function `calculatePercentage(examState.score, questionBank.length)`
+
+   (Note: think carefully about whether the denominator should be `questionBank.length`
+
+   or `examState.totalAnswered`—see Critical Thinking Question 15!).
+
+3. Determine `const passedExam = finalScore >= PASSING_PERCENTAGE;`.
+
+4. Display the formatted Final Scorecard via `alert(...)` showing Candidate Name,
+
+   Questions Answered (`totalAnswered / questionBank.length`),
+    Total Correct,
+
+   Percentage (formatted to 1 decimal place with `.toFixed(1)`), and Status
+
+   (`PASSED` or `FAILED`).
+
+
+
+STEP 7: Implement DevTools Console Reporting & Exam Replay
+
+----------------------------------------------------------
+
+1. Ask `const printAudit = confirm("Would you like to print the full diagnostic audit table to the DevTools Console?");`
+
+   - If `true`, log a header, call `console.table(examState.history)`, and log
+
+     `examState`.
+
+2. Ask `const retry = confirm("Would you like to restart the assessment?");`
+
+   - If `true`: Reset `examState.score = 0`, `examState.totalAnswered = 0`,
+
+     `examState.currentStreak = 0`, and `examState.history = []`, then recursively
+
+     invoke `runAssessment()`.
+
+   - If `false`: Show a closing `alert("Thank you for using the JS Exam Engine.")`.
+
+3. Finally, call `runAssessment();` at the bottom of your IIFE to launch the app.
+
+
+
+
+5. EXPECTED DIALOGUE & CONSOLE OUTPUT SAMPLE
+
+--------------------------------------------------------------------------------
+
+[Browser Dialogue 1 - prompt]
+
+  "HackerRank JS Assessment: Enter Candidate Name:" -> User enters: "Aarav"
+
+
+
+[Browser Dialogue 2 - alert]
+
+  "Welcome, Aarav! Beginning 5-question technical exam."
+
+
+
+[Browser Dialogues 3 to 7 - Q1 to Q5 prompts & alerts]
+
+  Q1 Input: "2"       -> Alert: "Correct! Current Streak: 1"
+
+  Q2 Input: "false"   -> Alert: "Correct! Current Streak: 2"
+
+  Q3 Input: "3"       -> Alert: "Incorrect! Streak reset."
+
+  Q4 Input: "falsy"   -> Alert: "Correct! Current Streak: 1"
+
+  Q5 Input: "3"       -> Alert: "Correct! Current Streak: 2"
+
+
+
+[Browser Dialogue 8 - Final Scorecard alert]
+
+  EXAM RESULT FOR AARAV:
+
+  ----------------------------------------
+
+  Questions Answered: 5 / 5
+
+  Total Correct: 4
+
+  Percentage: 80.0%
+
+  Status: PASSED
+
+
+
+[DevTools Console Output when Audit Confirmation = OK]
+
+  === INITIATING RECURSIVE SUBMISSION AUDIT ===
+
+  Auditing submission packages in 3...
+
+  Auditing submission packages in 2...
+
+  Auditing submission packages in 1...
+
+  Audit complete! Integrity verified.
+
+  === CANDIDATE DIAGNOSTIC AUDIT LOG ===
+
+  ┌─────────┬────────────┬──────────────────────────┬────────────┬──────────┐
+
+  │ (index) │ questionId │ topic                    │ userAnswer │ result   │
+
+  ├─────────┼────────────┼──────────────────────────┼────────────┼──────────┤
+
+  │ 0       │ 1          │ 'Implicit Type Coercion' │ '2'        │ 'PASSED' │
+
+  │ 1       │ 2          │ 'Strict Equality'        │ 'false'    │ 'PASSED' │
+
+  │ 2       │ 3          │ 'Modulo Arithmetic'      │ '3'        │ 'FAILED' │
+
+  │ 3       │ 4          │ 'Truthy & Falsy'         │ 'falsy'    │ 'PASSED' │
+
+  │ 4       │ 5          │ 'Default Return Values'  │ '3'        │ 'PASSED' │
+
+  └─────────┴────────────┴──────────────────────────┴────────────┴──────────┘
+
+
+
+
+
+6. ACCEPTANCE CRITERIA (SELF-TEST CHECKLIST)
+
+--------------------------------------------------------------------------------
+
+[ ] Code is cleanly separated into `index.html` and `app.js`.
+
+[ ] Typing `examState` or `runAssessment` in the browser DevTools Console throws a
+
+    `ReferenceError` (proving 100% IIFE isolation).
+
+[ ] Zero instances of `var` exist anywhere in the codebase.
+
+[ ] Clicking `[Cancel]` on the name prompt or any question prompt exits gracefully
+
+    with zero red `TypeError` messages in the console.
+
+[ ] Leaving an answer blank (`""` or `"   "`) never triggers a false pass on numeric
+
+    questions.
+
+[ ] `evaluateAnswer()` accepts each question's arrow validator as a first-class
+
+    callback function.
+
+[ ] `calculatePercentage()` is a pure function that handles `0` total questions
+
+    without returning `NaN`.
+
+[ ] `auditCountdown(3)` uses recursion (no `for` or `while` loops inside it).
+
+================================================================================
