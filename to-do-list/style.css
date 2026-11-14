@@ -1,0 +1,271 @@
+/* ===== To-Do List: style.css (v2) =====
+   Works with your script.js as it is. Class names it relies on:
+   .title  .task-list  .li  .info  .error   (+ the form, input, button elements)
+   Features: dark + light theme, accessible focus rings, hover/tap hints,
+   entry animation, empty state, phone layout, reduced-motion support.
+*/
+
+:root {
+  color-scheme: dark light;
+
+  --bg: #0b1220;
+  --surface: #131c2f;
+  --field: #0e1729;
+  --line: #263450;
+  --line-strong: #36466a;
+  --text: #e8edf7;
+  --muted: #94a1b9;
+
+  --accent: #facc15;
+  --accent-hover: #ffd83d;
+  --accent-ink: #1a1400;
+  --title: #facc15;
+  --ring: rgba(250, 204, 21, 0.25);
+  --glow: rgba(250, 204, 21, 0.10);
+
+  --danger: #f87171;
+  --danger-bg: rgba(248, 113, 113, 0.10);
+  --danger-line: rgba(248, 113, 113, 0.40);
+
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  --radius: 12px;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f4f6fb;
+    --surface: #ffffff;
+    --field: #ffffff;
+    --line: #dde3ee;
+    --line-strong: #c3cce0;
+    --text: #172033;
+    --muted: #5a667c;
+
+    --accent: #f2b705;
+    --accent-hover: #ffc61f;
+    --accent-ink: #231a00;
+    --title: #8a6100;          /* darker amber so it stays readable on white */
+    --ring: rgba(242, 183, 5, 0.40);
+    --glow: rgba(242, 183, 5, 0.20);
+
+    --danger: #c0392b;
+    --danger-bg: rgba(192, 57, 43, 0.07);
+    --danger-line: rgba(192, 57, 43, 0.35);
+
+    --shadow: 0 1px 3px rgba(23, 32, 51, 0.08);
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+/* Soft glow at the top of the page */
+html {
+  min-height: 100%;
+  background:
+    radial-gradient(900px 380px at 50% -120px, var(--glow), transparent 70%) no-repeat,
+    var(--bg);
+}
+
+/* One centred column. Your JS adds the elements in a different order than
+   they should appear, so `order` (below) fixes the visual order. */
+body {
+  margin: 0 auto;
+  width: min(100%, 600px);
+  min-height: 100vh;
+  padding: 56px 20px 48px;
+  display: flex;
+  flex-direction: column;
+  color: var(--text);
+  font-family: var(--font);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--accent); color: var(--accent-ink); }
+
+/* Lets .error (inside .info) take part in the column ordering */
+.info { display: contents; }
+
+/* ---------- Title ---------- */
+.title {
+  order: 1;
+  margin: 0 0 28px;
+  font-size: clamp(1.9rem, 5vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  color: var(--title);
+}
+
+.title::after {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 4px;
+  margin-top: 12px;
+  border-radius: 99px;
+  background: var(--accent);
+}
+
+/* ---------- Form ---------- */
+form {
+  order: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+input {
+  flex: 1 1 220px;
+  min-width: 0;
+  min-height: 50px;
+  padding: 0 16px;
+  font: inherit;                 /* 16px+ stops iOS from zooming on focus */
+  color: var(--text);
+  background: var(--field);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+input::placeholder { color: var(--muted); }
+input:hover { border-color: var(--line-strong); }
+
+input:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--ring);
+}
+
+button {
+  flex: 0 0 auto;
+  min-height: 50px;
+  padding: 0 26px;
+  font: inherit;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--accent-ink);
+  background: var(--accent);
+  border: 0;
+  border-radius: var(--radius);
+  box-shadow: 0 6px 16px -8px var(--accent);
+  cursor: pointer;
+  transition: background-color 0.15s, transform 0.08s, box-shadow 0.15s;
+}
+
+button:hover { background: var(--accent-hover); transform: translateY(-1px); }
+button:active { transform: translateY(1px); box-shadow: none; }
+button:focus-visible { outline: 3px solid var(--text); outline-offset: 3px; }
+
+/* ---------- Error message (hidden while empty) ---------- */
+.error {
+  order: 3;
+  margin: 14px 0 0;
+  padding: 10px 14px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--danger);
+  background: var(--danger-bg);
+  border: 1px solid var(--danger-line);
+  border-radius: 10px;
+}
+
+.error:empty { display: none; }
+
+/* ---------- Task list ---------- */
+.task-list {
+  order: 4;
+  margin: 26px 0 0;
+  padding-left: 2rem;
+}
+
+/* Empty state */
+.task-list:empty { padding-left: 0; }
+
+.task-list:empty::before {
+  content: "No tasks yet. Add your first one above.";
+  display: block;
+  padding: 34px 16px;
+  text-align: center;
+  color: var(--muted);
+  border: 1.5px dashed var(--line-strong);
+  border-radius: 14px;
+}
+
+.li {
+  margin-bottom: 10px;
+  padding: 14px 16px;
+  font-size: 1.05rem;
+  overflow-wrap: anywhere;       /* very long words never break the layout */
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: border-color 0.15s, background-color 0.15s, color 0.15s;
+  animation: pop-in 0.22s ease-out;
+}
+
+.li::marker { color: var(--title); font-weight: 700; }
+
+/* Mouse: show what a click will do */
+@media (hover: hover) {
+  .li:hover {
+    border-color: var(--danger);
+    background: var(--danger-bg);
+    color: var(--muted);
+    text-decoration: line-through;
+  }
+
+  .li:hover::after {
+    content: "click to remove";
+    float: right;
+    margin-left: 14px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--danger);
+    text-decoration: none;
+  }
+}
+
+/* Touch screens have no hover, so show the hint all the time */
+@media (hover: none) {
+  .li::after {
+    content: "tap to remove";
+    float: right;
+    margin-left: 14px;
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+
+  .li:active { border-color: var(--danger); background: var(--danger-bg); }
+}
+
+/* ---------- Hint (only used if you add a .hint element later) ---------- */
+.hint {
+  order: 5;
+  margin: 30px 0 0;
+  font-size: 0.9rem;
+  font-weight: 400;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* ---------- Motion ---------- */
+@keyframes pop-in {
+  from { opacity: 0; transform: translateY(8px) scale(0.98); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* ---------- Small screens ---------- */
+@media (max-width: 480px) {
+  body { padding: 36px 16px 32px; }
+  button { flex: 1 1 100%; }     /* full-width button is easier to tap */
+  .task-list { padding-left: 1.7rem; }
+}
