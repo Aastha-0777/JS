@@ -33,7 +33,7 @@ This program answers them in one call. Pass it **any list of orders** (all, only
 ## 🚀 Quick Start
 
 ```bash
-git clone https://github.com/Aastha-0777/JS/
+git clone https://github.com/Aastha-0777/JS/tree/main/sales-analytics-dashboard
 cd sales-analytics-dashboard
 node script.js
 ```
